@@ -1,4 +1,6 @@
 $(function(){
+
+    // COLOR BUTTONS HANDLERS
     var $whiteBtn = $('.white');
     var $greyBtn = $(".grey");
     var $blackBtn = $(".black");
@@ -70,5 +72,77 @@ $(function(){
       console.log("I'm red button");
     });
 
+    // SHAPE BUTTON HANDLERS
+
+    var $dotBtn = $(".dot");
+    var $segmentBtn = $(".segment");
+    var $triangleBtn = $(".triangle");
+    var $squareBtn = $(".square");
+    var $trapezoidBtn = $(".trapezoid");
+    var $pentagonBtn = $(".pentagon");
+    var $circleBtn = $(".circle");
+    var $ellipseBtn = $(".ellipse");
+    var $sphereBtn = $(".sphere");
+    var $pyramidBtn = $(".pyramid");
+    var $tPyramidBtn = $(".t-pyramid");
+    var $cubeBtn = $(".cube");
+    var $coneBtn = $(".cone");
+    var $cylinderBtn = $(".cylinder");
+
+    $dotBtn.click(function() {
+      console.log("I'm a dot");
+    });
+
+    $segmentBtn.click(function() {
+      console.log("I'm segment");
+    });
+
+    $triangleBtn.click(function() {
+      console.log("I'm a triangle");
+    });
+
+    $squareBtn.click(function() {
+      console.log("I'm a square");
+    });
+
+    $trapezoidBtn.click(function() {
+      console.log("I'm a trapezoid");
+    });
+
+    $pentagonBtn.click(function() {
+      console.log("I'm a pentagon");
+    });
+
+    $circleBtn.click(function() {
+      console.log("I'm a circle");
+    });
+
+    $ellipseBtn.click(function() {
+      console.log("I'm an ellipse");
+    });
+
+    $sphereBtn.click(function() {
+      console.log("I'm a sphere");
+    });
+
+    $cubeBtn.click(function() {
+      console.log("I'm a cube");
+    });
+
+    $pyramidBtn.click(function() {
+      console.log("I'm a square pyramid");
+    });
+
+    $tPyramidBtn.click(function() {
+      console.log("I'm a triangular pyramid");
+    });
+
+    $coneBtn.click(function() {
+      console.log("I'm a cone");
+    });
+
+    $cylinderBtn.click(function() {
+      console.log("I'm a cylinder");
+    });
     
 });
