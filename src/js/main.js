@@ -1,4 +1,31 @@
 $(function(){
+    // WEBGL
+    var mainView = document.getElementById('mainView');
+
+    // Create the scene
+    var scene = new THREE.Scene();
+    
+    //Create the camera
+    //PerspectiveCamera(field of view, ratio, inner clipping, outer clipping)
+    var camera = new THREE.PerspectiveCamera(75, mainView.offsetWidth / mainView.offsetHeight, 0.1, 1000);
+
+    // Create the place to render
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(mainView.offsetWidth, mainView.offsetHeight);
+    mainView.appendChild(renderer.domElement);
+
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    var cube = new THREE.Mesh(geometry, material);
+    
+    var pos = .2;
+
+    camera.position.z = 5;
+    cube.rotation.x += 0.5;
+    cube.rotation.y += 0.5;
+
+    renderer.render(scene, camera);
+
     // MODES
     var modes = "input[name=modes]";
     var checkedMode = "input[name=modes]:checked";
@@ -182,6 +209,10 @@ $(function(){
 
     $cubeBtn.click(function() {
       console.log("I'm a cube");
+      var cube = new THREE.Mesh(geometry, material);
+      camera.position.z = 5;
+      scene.add(cube);
+      renderer.render(scene, camera);
     });
 
     $pyramidBtn.click(function() {
