@@ -1,12 +1,23 @@
 $(function(){
-    var $body = $('body');
-    
+    // MODES
+    var modes = "input[name=modes]";
+    var checkedMode = "input[name=modes]:checked";
+    var selectedMode = $(checkedMode).val();
+    console.log(selectedMode);
+    selectedMode = $(modes).change(function(){
+        console.log($(checkedMode).val());
+        return $(checkedMode).val();
+    });
 
-    // SCALE HANDLERS
+    var $body = $('body');
+
+    // TRANSLATION HANDLERS
     var upArrow = 38;
     var downArrow = 40;
     var leftArrow = 37;
     var rightArrow = 39;
+
+    // SCALE HANDLERS
     var Akey = 65;
     var Dkey = 68;
     var Wkey = 87;
