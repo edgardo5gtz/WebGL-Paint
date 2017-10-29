@@ -14,14 +14,17 @@ $(function(){
     renderer.setSize(mainView.offsetWidth, mainView.offsetHeight);
     mainView.appendChild(renderer.domElement);
 
-    
-    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    var shape;
+    var material = new THREE.MeshBasicMaterial({ color: 0xfffff });
+
     
     var pos = .2;
 
     camera.position.z = 5;
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     renderer.render(scene, camera);
+
 
     // MODES
     var modes = "input[name=modes]";
@@ -52,15 +55,23 @@ $(function(){
         switch (event.which) {
           case upArrow:
             console.log("this is UpArrow");
+            shape.position.y += 0.1;
+            renderer.render(scene, camera);
             break;
           case downArrow:
             console.log("this is downArrow");
+             shape.position.y += -0.1;
+             renderer.render(scene, camera);
             break;
           case leftArrow:
             console.log("this is leftArrow");
+             shape.position.x -= 0.1;
+             renderer.render(scene, camera);
             break;
           case rightArrow:
             console.log("this is rightArrow");
+             shape.position.x += 0.1;
+             renderer.render(scene, camera);
             break;
           case Akey:
             console.log("this is A");
@@ -221,9 +232,9 @@ $(function(){
     $cubeBtn.click(function() {
       console.log("I'm a cube");
       var geometry = new THREE.BoxGeometry(1, 1, 1);
-      var cube = new THREE.Mesh(geometry, material);
+      shape = new THREE.Mesh(geometry, material);
       camera.position.z = 5;
-      scene.add(cube);
+      scene.add(shape);
       renderer.render(scene, camera);
     });
 
