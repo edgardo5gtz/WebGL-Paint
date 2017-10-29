@@ -14,15 +14,12 @@ $(function(){
     renderer.setSize(mainView.offsetWidth, mainView.offsetHeight);
     mainView.appendChild(renderer.domElement);
 
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    
     var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    var cube = new THREE.Mesh(geometry, material);
     
     var pos = .2;
 
     camera.position.z = 5;
-    cube.rotation.x += 0.5;
-    cube.rotation.y += 0.5;
 
     renderer.render(scene, camera);
 
@@ -100,58 +97,72 @@ $(function(){
 
     $whiteBtn.click(function(){
         console.log("I'm white button")
+        material = new THREE.MeshBasicMaterial({ color: 0xffffff });
     });
 
     $greyBtn.click(function() {
       console.log("I'm grey button");
+      material = new THREE.MeshBasicMaterial({ color: 0x808080 });
     });
 
     $blackBtn.click(function() {
       console.log("I'm black button");
+       material = new THREE.MeshBasicMaterial({ color: 0x000000 });
     });
 
     $blueBtn.click(function() {
       console.log("I'm blue button");
+       material = new THREE.MeshBasicMaterial({ color: 0xadd8e6 });
     });
 
     $yellowBtn.click(function() {
       console.log("I'm yellow button");
+      material = new THREE.MeshBasicMaterial({ color: 0xdaa520 });
     });
 
     $greenBtn.click(function() {
       console.log("I'm green button");
+      material = new THREE.MeshBasicMaterial({ color: 0xadff2f });
     });
 
     $pinkBtn.click(function() {
       console.log("I'm pink button");
+      material = new THREE.MeshBasicMaterial({ color: 0xffc0cb });
     });
 
     $orangeBtn.click(function() {
       console.log("I'm orange button");
+      material = new THREE.MeshBasicMaterial({ color: 0xff8c00 });
     });
 
     $purpleBtn.click(function() {
       console.log("I'm purple button");
+      material = new THREE.MeshBasicMaterial({ color: 0x800080 });
     });
 
     $skyBlueBtn.click(function() {
       console.log("I'm sky-blue button");
+      material = new THREE.MeshBasicMaterial({ color: 0x87cefa });
     });
 
     $aquaBtn.click(function() {
       console.log("I'm aqua button");
+      material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
     });
 
     $darkBlueBtn.click(function() {
       console.log("I'm dark-blue button");
+      material = new THREE.MeshBasicMaterial({ color: 0x0000cd });
     });
 
     $brownBtn.click(function() {
       console.log("I'm brown button");
+      material = new THREE.MeshBasicMaterial({ color: 0xdeb887 });
     });
 
     $redBtn.click(function() {
       console.log("I'm red button");
+      material = new THREE.MeshBasicMaterial({ color: 0xf08080 });
     });
 
     // SHAPE BUTTON HANDLERS
@@ -209,6 +220,7 @@ $(function(){
 
     $cubeBtn.click(function() {
       console.log("I'm a cube");
+      var geometry = new THREE.BoxGeometry(1, 1, 1);
       var cube = new THREE.Mesh(geometry, material);
       camera.position.z = 5;
       scene.add(cube);

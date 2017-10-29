@@ -2,33 +2,33 @@ p{
     font-size: 22px;
 }
 /* COLORS */
-.red{background-color: lightcoral;}
+.red{background-color: #f08080;}
 
-.blue{background-color: lightblue;}
+.blue{background-color: #add8e6;}
 
-.yellow{background-color: goldenrod}
+.yellow{background-color: #daa520}
 
-.green{background-color: greenyellow;}
+.green{background-color: #adff2f;}
 
-.purple{background-color: purple;}
+.purple{background-color: #800080;}
 
-.orange{background-color: darkorange;}
+.orange{background-color: #ff8c00;}
 
-.pink{background-color: pink;}
+.pink{background-color: #ffc0cb;}
 
-.grey{background-color: gray;}
+.grey{background-color: #808080;}
 
-.black{background-color: black;}
+.black{background-color: #000000;}
 
 .white{background-color: white; border-color: black;}
 
-.sky-blue{background-color: lightskyblue;}
+.sky-blue{background-color: #87cefa;}
 
-.aqua{background-color: aqua;}
+.aqua{background-color: #00ffff;}
 
-.brown{background-color: burlywood;}
+.brown{background-color: #deb887;}
 
-.dark-blue{background-color: mediumblue;}
+.dark-blue{background-color: #0000cd;}
 
 /* FIGURES*/
 
