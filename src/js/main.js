@@ -75,15 +75,23 @@ $(function(){
             break;
           case Akey:
             console.log("this is A");
+            shape.scale.x += -0.1;
+            renderer.render(scene, camera);
             break;
           case Dkey:
             console.log("this is D");
+             shape.scale.x += 0.1;
+             renderer.render(scene, camera);
             break;
           case Wkey:
             console.log("this is W");
+             shape.scale.y += 0.1;
+             renderer.render(scene, camera);
             break;
           case Skey:
             console.log("this is S");
+             shape.scale.y -= 0.1;
+             renderer.render(scene, camera);
             break;
           default:
             break;
