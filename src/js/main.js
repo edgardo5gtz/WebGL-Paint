@@ -1,4 +1,48 @@
 $(function(){
+    var $body = $('body');
+    
+
+    // SCALE HANDLERS
+    var upArrow = 38;
+    var downArrow = 40;
+    var leftArrow = 37;
+    var rightArrow = 39;
+    var Akey = 65;
+    var Dkey = 68;
+    var Wkey = 87;
+    var Skey = 83;
+
+    $body.keydown(function (event){
+        event.preventDefault();
+        switch (event.which) {
+          case upArrow:
+            console.log("this is UpArrow");
+            break;
+          case downArrow:
+            console.log("this is downArrow");
+            break;
+          case leftArrow:
+            console.log("this is leftArrow");
+            break;
+          case rightArrow:
+            console.log("this is rightArrow");
+            break;
+          case Akey:
+            console.log("this is A");
+            break;
+          case Dkey:
+            console.log("this is D");
+            break;
+          case Wkey:
+            console.log("this is W");
+            break;
+          case Skey:
+            console.log("this is S");
+            break;
+          default:
+            break;
+        }
+    });
 
     // COLOR BUTTONS HANDLERS
     var $whiteBtn = $('.white');
