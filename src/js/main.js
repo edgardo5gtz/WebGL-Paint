@@ -31,10 +31,46 @@ $(function(){
     var checkedMode = "input[name=modes]:checked";
     var selectedMode = $(checkedMode).val();
     console.log(selectedMode);
-    selectedMode = $(modes).change(function(){
+    $(modes).change(function(){
         console.log($(checkedMode).val());
-        return $(checkedMode).val();
+        selectedMode = $(checkedMode).val();
     });
+
+    var randomColor = function(){
+        var ran = Math.random() * 10;
+        var color;
+        if (ran > 8) color = 0xff0000;
+        else if (8 > ran && ran > 4) color = 0x0000ff;
+        else color = 0x0000ff;
+        return color;
+    }
+
+    var mode = function(geometry){
+        var mode;
+        switch (parseInt(selectedMode)) {
+          case 1:
+            console.log("in number 1")
+            mode = new THREE.Mesh(geometry, material);
+            break;
+          case 2:
+            var tempMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, vertexColors: THREE.VertexColors});
+            for(i in geometry.faces){
+                var face = geometry.faces[i];
+                face.vertexColors[0] = new THREE.Color(0xff0000);
+                face.vertexColors[1] = new THREE.Color(0x00ff00);
+                face.vertexColors[2] = new THREE.Color(0x0000ff);
+            }
+            mode = new THREE.Mesh(geometry, tempMaterial);
+            break;
+          case 3:
+            var wireframe = new THREE.WireframeGeometry(geometry);
+            mode = new THREE.LineSegments(wireframe, material);
+            break ;
+          case 4:
+            break;
+        }
+        return mode;
+    }
 
     var $body = $('body');
 
@@ -277,8 +313,7 @@ $(function(){
     $cubeBtn.click(function() {
       console.log("I'm a cube");
       var geometry = new THREE.BoxGeometry(1, 1, 1);
-      shape = new THREE.Mesh(geometry, material);
-      camera.position.z = 5;
+      shape = mode(geometry);
       scene.add(shape);
       renderer.render(scene, camera);
     });
