@@ -1,6 +1,8 @@
 $(function(){
     // WEBGL
     var mainView = document.getElementById('mainView');
+    var upView = document.getElementById("extraView1");
+    var downView = document.getElementById("extraView2");
 
     // Create the scene
     var scene = new THREE.Scene();
@@ -8,14 +10,25 @@ $(function(){
     //Create the camera
     //PerspectiveCamera(field of view, ratio, inner clipping, outer clipping)
     var camera = new THREE.PerspectiveCamera(75, mainView.offsetWidth / mainView.offsetHeight, 0.1, 1000);
+    var cameraUp = new THREE.PerspectiveCamera(75, upView.offsetWidth / upView.offsetHeight, 0.1, 1000);
+    var cameraDown = new THREE.PerspectiveCamera(75, downView.offsetWidth / downView.offsetHeight, 0.1, 1000);
 
     // Create the place to render
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(mainView.offsetWidth, mainView.offsetHeight);
     mainView.appendChild(renderer.domElement);
 
+    // Extra viewports
+    var rendererUp = new THREE.WebGLRenderer();
+    rendererUp.setSize(upView.offsetWidth, upView.offsetHeight);
+    upView.appendChild(rendererUp.domElement);
+
+    var rendererDown = new THREE.WebGLRenderer();
+    rendererDown.setSize(downView.offsetWidth, downView.offsetHeight);
+    downView.appendChild(rendererDown.domElement);
+
     var shape;
-    var material = new THREE.MeshBasicMaterial({ color: 0xfffff });
+    var material = new THREE.MeshBasicMaterial({ color: 0xffffff });
     var texture = function(geometry){
         var img = new THREE.TextureLoader().load(
             './img/anime.gif',
@@ -26,17 +39,27 @@ $(function(){
                 );
                 scene.add(shape);
                 renderer.render(scene, camera);
+                rendererDown.render(scene, cameraDown);
+                rendererUp.render(scene, cameraUp);
             }
         );
     }
 
-    
-    var pos = .2;
-
+    // Camera positions
     camera.position.z = 5;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
+    cameraUp.position.y = 5;
+    cameraUp.position.z = 1;
+    cameraUp.lookAt(new THREE.Vector3(0, 0, 0));
+
+    cameraDown.position.z = 1;
+    cameraDown.position.y = -5;
+    cameraDown.lookAt(new THREE.Vector3(0, 0, 0));
+
     renderer.render(scene, camera);
+    rendererDown.render(scene, cameraDown);
+    rendererUp.render(scene, cameraUp);
 
     
     // MODES
@@ -53,7 +76,6 @@ $(function(){
         var mode;
         switch (parseInt(selectedMode)) {
           case 1:
-            console.log("in number 1")
             material.side = THREE.DoubleSide;
             mode = new THREE.Mesh(geometry, material);
             break;
@@ -80,6 +102,14 @@ $(function(){
     }
 
     var $body = $('body');
+    // Save the Scene
+    var $saveBtn = $('#saveBtn');
+    $saveBtn.click(function(){
+        var exporter = new THREE.OBJExporter();
+        var sceneJson = JSON.stringify(exporter.parse(scene), null, 2);
+        sceneJson = sceneJson.split("\\n").join("<br />");
+        document.getElementById('exportDiv').innerHTML = sceneJson;
+    });
 
     // SCALE HANDLERS
     var upArrow = 38;
@@ -88,6 +118,7 @@ $(function(){
     var rightArrow = 39;
 
     // TRANSLATION HANDLERS
+    var pos = .2; // Tranlation speed
     var Akey = 65;
     var Dkey = 68;
     var Wkey = 87;
@@ -110,68 +141,100 @@ $(function(){
           case Wkey:
             shape.position.y += 0.1;
             renderer.render(scene, camera);
+            rendererDown.render(scene, cameraDown);
+            rendererUp.render(scene, cameraUp);
             break;
           case Skey:
             shape.position.y += -0.1;
             renderer.render(scene, camera);
+            rendererDown.render(scene, cameraDown);
+            rendererUp.render(scene, cameraUp);
             break;
           case Akey:
             shape.position.x -= 0.1;
             renderer.render(scene, camera);
+            rendererDown.render(scene, cameraDown);
+            rendererUp.render(scene, cameraUp);
             break;
           case Dkey:
             shape.position.x += 0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case Qkey:
             shape.position.z += 0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case Ekey:
             shape.position.z += -0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           // Rotate
           case Ikey:
             shape.rotation.y += 0.1;
             renderer.render(scene, camera);
+            rendererDown.render(scene, cameraDown);
+            rendererUp.render(scene, cameraUp);
             break;
           case Kkey:
             shape.rotation.y += -0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case Jkey:
             shape.rotation.x -= 0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case Lkey:
             shape.rotation.x += 0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case Ukey:
             shape.rotation.z += 0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case Okey:
             shape.rotation.z += -0.1;
             renderer.render(scene, camera);
+            rendererDown.render(scene, cameraDown);
+            rendererUp.render(scene, cameraUp);
             break;
           // Scale
           case leftArrow:
             shape.scale.x += -0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case rightArrow:
             shape.scale.x += 0.1;
-            renderer.render(scene, camera);
+           renderer.render(scene, camera);
+           rendererDown.render(scene, cameraDown);
+           rendererUp.render(scene, cameraUp);
             break;
           case upArrow:
             shape.scale.y += 0.1;
             renderer.render(scene, camera);
+            rendererDown.render(scene, cameraDown);
+            rendererUp.render(scene, cameraUp);
             break;
           case downArrow:
             shape.scale.y -= 0.1;
-            renderer.render(scene, camera);
+          renderer.render(scene, camera);
+          rendererDown.render(scene, cameraDown);
+          rendererUp.render(scene, cameraUp);
             break;
           default:
             break;
@@ -292,6 +355,8 @@ $(function(){
         shape = new THREE.Points(dotGeometry, dotMaterial);
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
     });
 
     $segmentBtn.click(function() {
@@ -301,6 +366,8 @@ $(function(){
         shape = new THREE.LineSegments(geometry,material);
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
     });
 
     $triangleBtn.click(function() {
@@ -316,6 +383,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -327,6 +396,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -345,6 +416,8 @@ $(function(){
        } else {
          scene.add(shape);
          renderer.render(scene, camera);
+         rendererDown.render(scene, cameraDown);
+         rendererUp.render(scene, cameraUp);
        }
     });
 
@@ -365,6 +438,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -376,6 +451,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -388,6 +465,8 @@ $(function(){
         shape.scale.y += -.3;
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -399,6 +478,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -411,7 +492,9 @@ $(function(){
       }
       else{
           scene.add(shape);
-          renderer.render(scene, camera);
+         renderer.render(scene, camera);
+         rendererDown.render(scene, cameraDown);
+         rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -435,6 +518,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -456,6 +541,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -467,6 +554,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
 
@@ -478,6 +567,8 @@ $(function(){
       } else {
         scene.add(shape);
         renderer.render(scene, camera);
+        rendererDown.render(scene, cameraDown);
+        rendererUp.render(scene, cameraUp);
       }
     });
     
