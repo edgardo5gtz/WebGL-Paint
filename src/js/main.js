@@ -49,15 +49,6 @@ $(function(){
         selectedMode = $(checkedMode).val();
     });
 
-    var randomColor = function(){
-        var ran = Math.random() * 10;
-        var color;
-        if (ran > 8) color = 0xff0000;
-        else if (8 > ran && ran > 4) color = 0x0000ff;
-        else color = 0x0000ff;
-        return color;
-    }
-
     var mode = function(geometry){
         var mode;
         switch (parseInt(selectedMode)) {
@@ -289,23 +280,70 @@ $(function(){
     var $cylinderBtn = $(".cylinder");
 
     $dotBtn.click(function() {
-      console.log("I'm a dot");
+        var dotGeometry = new THREE.Geometry();
+        dotGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
+        var dotMaterial = new THREE.PointsMaterial({
+          size: 1,
+          sizeAttenuation: false,
+          color: material.color
+        });
+        shape = new THREE.Points(dotGeometry, dotMaterial);
+        scene.add(shape);
+        renderer.render(scene, camera);
     });
 
     $segmentBtn.click(function() {
-      console.log("I'm segment");
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push(new THREE.Vector3(-2, 0, 0));
+        geometry.vertices.push(new THREE.Vector3( 2, 0, 0));
+        shape = new THREE.LineSegments(geometry,material);
+        scene.add(shape);
+        renderer.render(scene, camera);
     });
 
     $triangleBtn.click(function() {
-      console.log("I'm a triangle");
+      var geometry = new THREE.Geometry();
+      geometry.vertices.push(new THREE.Vector3(-2, -2, 0));
+      geometry.vertices.push(new THREE.Vector3(2, -2, 0));
+      geometry.vertices.push(new THREE.Vector3(0, 2, 0));
+      geometry.faces.push(new THREE.Face3(0, 1, 2));
+      geometry.computeFaceNormals();
+      shape = mode(geometry)
+      if (shape === 4) {
+        texture(geometry);
+      } else {
+        scene.add(shape);
+        renderer.render(scene, camera);
+      }
     });
 
     $squareBtn.click(function() {
-      console.log("I'm a square");
+      var geometry = new THREE.BoxGeometry(1, 1, 0);
+      shape = mode(geometry);
+      if (shape === 4) {
+        texture(geometry);
+      } else {
+        scene.add(shape);
+        renderer.render(scene, camera);
+      }
     });
 
     $trapezoidBtn.click(function() {
-      console.log("I'm a trapezoid");
+        var geometry = new THREE.Geometry();
+       geometry.vertices.push(new THREE.Vector3(-2, 0, 0));
+       geometry.vertices.push(new THREE.Vector3(2, 0, 0));
+       geometry.vertices.push(new THREE.Vector3(1, 2, 0));
+       geometry.vertices.push(new THREE.Vector3(-1, 2, 0));
+       geometry.faces.push(new THREE.Face3(0, 1, 2));
+       geometry.faces.push(new THREE.Face3(0, 2, 3));
+       geometry.computeFaceNormals();
+       shape = mode(geometry);
+       if (shape === 4) {
+         texture(geometry);
+       } else {
+         scene.add(shape);
+         renderer.render(scene, camera);
+       }
     });
 
     $pentagonBtn.click(function() {
