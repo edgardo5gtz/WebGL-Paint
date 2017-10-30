@@ -102,6 +102,14 @@ $(function(){
     }
 
     var $body = $('body');
+    // Save the Scene
+    var $saveBtn = $('#saveBtn');
+    $saveBtn.click(function(){
+        var exporter = new THREE.OBJExporter();
+        var sceneJson = JSON.stringify(exporter.parse(scene), null, 2);
+        sceneJson = sceneJson.split("\\n").join("<br />");
+        document.getElementById('exportDiv').innerHTML = sceneJson;
+    });
 
     // SCALE HANDLERS
     var upArrow = 38;
