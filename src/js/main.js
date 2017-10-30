@@ -38,60 +38,97 @@ $(function(){
 
     var $body = $('body');
 
-    // TRANSLATION HANDLERS
+    // SCALE HANDLERS
     var upArrow = 38;
     var downArrow = 40;
     var leftArrow = 37;
     var rightArrow = 39;
 
-    // SCALE HANDLERS
+    // TRANSLATION HANDLERS
     var Akey = 65;
     var Dkey = 68;
     var Wkey = 87;
     var Skey = 83;
+    var Qkey = 81;
+    var Ekey = 69;
+
+    // ROTATION HANDLERS
+    var Ukey = 85;
+    var Okey = 79;
+    var Ikey = 73;
+    var Kkey = 75;
+    var Jkey = 74;
+    var Lkey = 76;
 
     $body.keydown(function (event){
         event.preventDefault();
         switch (event.which) {
-          case upArrow:
-            console.log("this is UpArrow");
+          // Translate
+          case Wkey:
             shape.position.y += 0.1;
             renderer.render(scene, camera);
             break;
-          case downArrow:
-            console.log("this is downArrow");
-             shape.position.y += -0.1;
-             renderer.render(scene, camera);
-            break;
-          case leftArrow:
-            console.log("this is leftArrow");
-             shape.position.x -= 0.1;
-             renderer.render(scene, camera);
-            break;
-          case rightArrow:
-            console.log("this is rightArrow");
-             shape.position.x += 0.1;
-             renderer.render(scene, camera);
+          case Skey:
+            shape.position.y += -0.1;
+            renderer.render(scene, camera);
             break;
           case Akey:
-            console.log("this is A");
-            shape.scale.x += -0.1;
+            shape.position.x -= 0.1;
             renderer.render(scene, camera);
             break;
           case Dkey:
-            console.log("this is D");
-             shape.scale.x += 0.1;
-             renderer.render(scene, camera);
+            shape.position.x += 0.1;
+            renderer.render(scene, camera);
             break;
-          case Wkey:
-            console.log("this is W");
-             shape.scale.y += 0.1;
-             renderer.render(scene, camera);
+          case Qkey:
+            shape.position.z += 0.1;
+            renderer.render(scene, camera);
             break;
-          case Skey:
-            console.log("this is S");
-             shape.scale.y -= 0.1;
-             renderer.render(scene, camera);
+          case Ekey:
+            shape.position.z += -0.1;
+            renderer.render(scene, camera);
+            break;
+          // Rotate
+          case Ikey:
+            shape.rotation.y += 0.1;
+            renderer.render(scene, camera);
+            break;
+          case Kkey:
+            shape.rotation.y += -0.1;
+            renderer.render(scene, camera);
+            break;
+          case Jkey:
+            shape.rotation.x -= 0.1;
+            renderer.render(scene, camera);
+            break;
+          case Lkey:
+            shape.rotation.x += 0.1;
+            renderer.render(scene, camera);
+            break;
+          case Ukey:
+            shape.rotation.z += 0.1;
+            renderer.render(scene, camera);
+            break;
+          case Okey:
+            shape.rotation.z += -0.1;
+            renderer.render(scene, camera);
+            break;
+          // Scale
+          case leftArrow:
+            shape.scale.x += -0.1;
+            renderer.render(scene, camera);
+            break;
+          case rightArrow:
+            shape.scale.x += 0.1;
+            renderer.render(scene, camera);
+            break;
+          case upArrow:
+            shape.scale.y += 0.1;
+            renderer.render(scene, camera);
+            break;
+          case downArrow:
+            shape.scale.y -= 0.1;
+            renderer.render(scene, camera);
             break;
           default:
             break;
