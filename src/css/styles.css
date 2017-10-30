@@ -1,0 +1,89 @@
+p{
+    font-size: 22px;
+}
+/* COLORS */
+.red{background-color: #f08080;}
+
+.blue{background-color: #add8e6;}
+
+.yellow{background-color: #daa520}
+
+.green{background-color: #adff2f;}
+
+.purple{background-color: #800080;}
+
+.orange{background-color: #ff8c00;}
+
+.pink{background-color: #ffc0cb;}
+
+.grey{background-color: #808080;}
+
+.black{background-color: #000000;}
+
+.white{background-color: white; border-color: black;}
+
+.sky-blue{background-color: #87cefa;}
+
+.aqua{background-color: #00ffff;}
+
+.brown{background-color: #deb887;}
+
+.dark-blue{background-color: #0000cd;}
+
+/* FIGURES*/
+
+.segment{background-image: url('../img/line.jpg'); background-size: 62px 60px;}
+
+.dot{background-image: url('../img/dot.jpg'); background-size: 60px 45px;}
+
+.triangle{background-image: url('../img/triangle.jpg'); background-size: 62px 59px;}
+
+.square{background-image: url('../img/square.jpg'); background-size: 60px 59px;}
+
+.pentagon{background-image: url('../img/pentagon.jpg'); background-size: 62px 60px;}
+
+.trapezoid{background-image: url('../img/trapezoid.jpg'); background-size: 62px 60px;}
+
+.circle{background-image: url('../img/circle.jpg'); background-size: 55px 53px;}
+
+.ellipse{background-image: url('../img/ellipse.jpg'); background-size: 60px 56px;}
+
+.sphere{background-image: url('../img/sphere.jpg'); background-size: 60px 59px;}
+
+.cube{background-image: url('../img/cube.jpg'); background-size: 60px 59px;}
+
+.pyramid{background-image: url('../img/pyramid.jpg'); background-size: 60px 59px;}
+
+.t-pyramid{background-image: url('../img/t-pyramid.jpg'); background-size: 60px 59px;}
+
+.cone{background-image: url('../img/cone.jpg'); background-size: 55px 53px;}
+
+.cylinder{background-image: url('../img/cylinder.jpg'); background-size: 55px 56px;}
+
+.rendererStyle{
+    background-color:black;
+}
+
+.extraCameraStyle{
+    height: 200px;
+    width: 100%;
+}
+
+.pickerSize{
+    width: 100%;
+    height: 150px;
+}
+
+.btn-size{
+    height: 60px;
+    width: 62px;
+    margin: 10px 10px 0 0;
+}
+
+.btn-size:focus{
+    background-color: transparent;
+}
+
+.btn-size:hover{
+    background-color: transparent;
+}
