@@ -16,6 +16,19 @@ $(function(){
 
     var shape;
     var material = new THREE.MeshBasicMaterial({ color: 0xfffff });
+    var texture = function(geometry){
+        var img = new THREE.TextureLoader().load(
+            './img/anime.gif',
+            function(texture){
+                shape = new THREE.Mesh(
+                    geometry,
+                    new THREE.MeshBasicMaterial({map:texture})
+                );
+                scene.add(shape);
+                renderer.render(scene, camera);
+            }
+        );
+    }
 
     
     var pos = .2;
@@ -25,7 +38,7 @@ $(function(){
 
     renderer.render(scene, camera);
 
-
+    
     // MODES
     var modes = "input[name=modes]";
     var checkedMode = "input[name=modes]:checked";
@@ -67,6 +80,7 @@ $(function(){
             mode = new THREE.LineSegments(wireframe, material);
             break ;
           case 4:
+            mode = 4;
             break;
         }
         return mode;
@@ -314,8 +328,13 @@ $(function(){
       console.log("I'm a cube");
       var geometry = new THREE.BoxGeometry(1, 1, 1);
       shape = mode(geometry);
-      scene.add(shape);
-      renderer.render(scene, camera);
+      if (shape === 4){
+          texture(geometry);
+      }
+      else{
+          scene.add(shape);
+          renderer.render(scene, camera);
+      }
     });
 
     $pyramidBtn.click(function() {
